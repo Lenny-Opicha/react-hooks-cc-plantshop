@@ -1,18 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
-function PlantCard({ plant }) {
-  const [isSoldOut, setIsSoldOut] = useState(false);
-
+function PlantCard({ plant, onToggleSoldOut }) {
   return (
     <div className="plant-card" data-testid="plant-item">
       <img src={plant.image} alt={plant.name} />
       <h4>{plant.name}</h4>
-
-      {/* TEST expects "Price: 15.99" (NO dollar sign) */}
       <p>Price: {plant.price}</p>
 
-      <button onClick={() => setIsSoldOut(!isSoldOut)}>
-        {isSoldOut ? "Sold Out" : "In Stock"}
+      <button onClick={() => onToggleSoldOut(plant.id)}>
+        {plant.soldOut ? "Out of Stock" : "In Stock"}
       </button>
 
       <button className="delete-btn">🗑️ Delete</button>
